@@ -3,6 +3,7 @@ import { cyan, lightBlue } from '@mui/material/colors'
 
 export const LightTheme = createTheme({
   palette: {
+    mode: 'light',
     primary: {
       main: lightBlue[500],
       dark: lightBlue[400],

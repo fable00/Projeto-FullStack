@@ -15,7 +15,7 @@ import {
 } from '@mui/material'
 
 import { ReactNode } from 'react'
-import { useDrawerContext } from '../../contexts'
+import { useDrawerContext, useAppContext } from '../../contexts'
 import { useMatch, useNavigate, useResolvedPath } from 'react-router-dom'
 
 interface IListItemLinkProps {
@@ -58,7 +58,7 @@ export const MenuLateral: React.FC<IMenuLateralProps> = ({ children }) => {
   const theme = useTheme()
   const smDown = useMediaQuery(theme.breakpoints.down('sm'))
   const { isDrawerOpen, toggleDrawerOpen, drawerOptions } = useDrawerContext()
-
+  const { toggleTheme } = useAppContext()
   return (
     <>
       <Drawer
@@ -86,7 +86,6 @@ export const MenuLateral: React.FC<IMenuLateralProps> = ({ children }) => {
           </Box>
 
           <Divider />
-
           <Box flex={1}>
             <List component={'nav'}>
               {drawerOptions.map((drawerOption) => (
@@ -98,6 +97,17 @@ export const MenuLateral: React.FC<IMenuLateralProps> = ({ children }) => {
                   onClick={smDown ? toggleDrawerOpen : undefined}
                 />
               ))}
+            </List>
+          </Box>
+
+          <Box>
+            <List component={'nav'}>
+              <ListItemButton onClick={toggleTheme}>
+                <ListItemIcon>
+                  <Icon>lightbulb</Icon>
+                </ListItemIcon>
+                <ListItemText primary={'Alterar tema'} />
+              </ListItemButton>
             </List>
           </Box>
         </Box>
