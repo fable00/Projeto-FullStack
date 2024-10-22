@@ -9,7 +9,7 @@ interface IBarraDeFerramentas {
   onClickNewButton?: () => void
 }
 
-export const BarraDeFerramentas: React.FC<IBarraDeFerramentas> = ({
+export const FerramentasDaListagem: React.FC<IBarraDeFerramentas> = ({
   searchText = '',
   showSearchText = false,
   onChangeSearchText,
