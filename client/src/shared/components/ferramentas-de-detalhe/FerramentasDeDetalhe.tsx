@@ -5,6 +5,8 @@ import {
   Icon,
   Paper,
   Skeleton,
+  Typography,
+  useMediaQuery,
   useTheme,
 } from '@mui/material'
 
@@ -52,7 +54,8 @@ export const FerramentasDeDetalhe: React.FC<IFerramentasDeDetalhe> = ({
   onClickDeleteButton,
 }) => {
   const theme = useTheme()
-
+  const smDown = useMediaQuery(theme.breakpoints.down('sm'))
+  const mdDown = useMediaQuery(theme.breakpoints.down('md'))
   return (
     <Box
       marginX={1}
@@ -72,23 +75,42 @@ export const FerramentasDeDetalhe: React.FC<IFerramentasDeDetalhe> = ({
           disableElevation
           startIcon={<Icon>save</Icon>}
         >
-          Salvar
+          <Typography
+            variant={'button'}
+            whiteSpace={'nowrap'}
+            textOverflow={'ellipsis'}
+            overflow={'hidden'}
+          >
+            Salvar
+          </Typography>
         </Button>
       )}
       {showSaveButtonLoading && <Skeleton width={110} height={60} />}
 
-      {showSaveBackButton && !showSaveBackButtonLoading && (
-        <Button
-          onClick={onClickSaveBackButton}
-          variant={'outlined'}
-          color={'primary'}
-          disableElevation
-          startIcon={<Icon>save</Icon>}
-        >
-          Salvar e Voltar
-        </Button>
+      {showSaveBackButton &&
+        !showSaveBackButtonLoading &&
+        !smDown &&
+        !mdDown && (
+          <Button
+            onClick={onClickSaveBackButton}
+            variant={'outlined'}
+            color={'primary'}
+            disableElevation
+            startIcon={<Icon>save</Icon>}
+          >
+            <Typography
+              variant={'button'}
+              whiteSpace={'nowrap'}
+              textOverflow={'ellipsis'}
+              overflow={'hidden'}
+            >
+              Salvar e Voltar
+            </Typography>
+          </Button>
+        )}
+      {showSaveBackButtonLoading && !mdDown && !smDown && (
+        <Skeleton width={180} height={60} />
       )}
-      {showSaveBackButtonLoading && <Skeleton width={180} height={60} />}
 
       {showDeleteButton && !showDeleteButtonLoading && (
         <Button
@@ -98,12 +120,19 @@ export const FerramentasDeDetalhe: React.FC<IFerramentasDeDetalhe> = ({
           disableElevation
           startIcon={<Icon>delete</Icon>}
         >
-          Apagar
+          <Typography
+            variant={'button'}
+            whiteSpace={'nowrap'}
+            textOverflow={'ellipsis'}
+            overflow={'hidden'}
+          >
+            Apagar
+          </Typography>
         </Button>
       )}
       {showDeleteButtonLoading && <Skeleton width={110} height={60} />}
 
-      {showNewButton && !showNewButtonLoading && (
+      {showNewButton && !showNewButtonLoading && !smDown && (
         <Button
           onClick={onClickNewButton}
           variant={'outlined'}
@@ -111,12 +140,25 @@ export const FerramentasDeDetalhe: React.FC<IFerramentasDeDetalhe> = ({
           disableElevation
           startIcon={<Icon>add</Icon>}
         >
-          {textNewButton}
+          <Typography
+            variant={'button'}
+            whiteSpace={'nowrap'}
+            textOverflow={'ellipsis'}
+            overflow={'hidden'}
+          >
+            {textNewButton}
+          </Typography>
         </Button>
       )}
-      {showNewButtonLoading && <Skeleton width={110} height={60} />}
+      {showNewButtonLoading && !smDown && <Skeleton width={110} height={60} />}
 
-      <Divider variant="middle" orientation="vertical" />
+      {showBackButton &&
+        (showDeleteButton ||
+          showSaveButton ||
+          showNewButton ||
+          showSaveBackButton) && (
+          <Divider variant="middle" orientation="vertical" />
+        )}
 
       {showBackButton && !showBackButtonLoading && (
         <Button
@@ -126,7 +168,14 @@ export const FerramentasDeDetalhe: React.FC<IFerramentasDeDetalhe> = ({
           disableElevation
           startIcon={<Icon>arrow_back</Icon>}
         >
-          Voltar
+          <Typography
+            variant={'button'}
+            whiteSpace={'nowrap'}
+            textOverflow={'ellipsis'}
+            overflow={'hidden'}
+          >
+            Voltar
+          </Typography>
         </Button>
       )}
       {showBackButtonLoading && <Skeleton width={110} height={60} />}
